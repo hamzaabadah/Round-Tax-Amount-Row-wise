@@ -57,6 +57,8 @@ app_license = "MIT"
 # 	"methods": "round_tax_amount_row_wise.utils.jinja_methods",
 # 	"filters": "round_tax_amount_row_wise.utils.jinja_filters"
 # }
+# Migration
+after_migrate = "round_tax_amount_row_wise.migration.after_migrate"
 
 # Installation
 # ------------
