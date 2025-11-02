@@ -115,10 +115,10 @@ after_migrate = "round_tax_amount_row_wise.migration.after_migrate"
 # }
 
 from round_tax_amount_row_wise.override.override_doctype_class_having_accounts_controller import (
-	get_override_doctype_class,
+	get_override_doctype_class_safe,
 )
 
-override_doctype_class = get_override_doctype_class()
+override_doctype_class = get_override_doctype_class_safe()
 
 # Document Events
 # ---------------

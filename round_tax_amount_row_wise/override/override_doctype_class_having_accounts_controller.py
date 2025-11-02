@@ -50,6 +50,18 @@ def set_override_doctype_class():
 	return override_doctype_class
 
 
+def get_override_doctype_class_safe():
+	"""
+	Safe version that can be called during import time.
+	Returns empty dict if database is not available yet.
+	The actual overrides will be set during after_migrate hook.
+	"""
+
+	if not frappe.db or not frappe.local.site:
+		return {}
+	return get_override_doctype_class()
+
+
 def get_override_doctype_class():
 	override_doctype_class = frappe.get_site_config().get("override_doctype_class")
 	original_doctype_class = frappe.get_site_config().get("original_doctype_class")
