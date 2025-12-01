@@ -10,6 +10,14 @@ from round_tax_amount_row_wise.override.taxes_and_totals import (
 )
 
 
+def calculate_taxes_and_totals_round(doc):
+	calculate_taxes_and_totals_class(doc)
+
+	if doc.doctype in ("Sales Order", "Delivery Note", "Sales Invoice", "POS Invoice",):
+		doc.calculate_commission()
+		doc.calculate_contribution()
+
+
 class CustomAccountControllers:
 	def calculate_taxes_and_totals(self):
 		calculate_taxes_and_totals_class(self)
