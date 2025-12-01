@@ -58,7 +58,7 @@ app_license = "MIT"
 # 	"filters": "round_tax_amount_row_wise.utils.jinja_filters"
 # }
 # Migration
-after_migrate = "round_tax_amount_row_wise.migration.after_migrate"
+# after_migrate = "round_tax_amount_row_wise.migration.after_migrate"
 
 # Installation
 # ------------
@@ -114,11 +114,11 @@ after_migrate = "round_tax_amount_row_wise.migration.after_migrate"
 # 	"ToDo": "custom_app.overrides.CustomToDo"
 # }
 
-from round_tax_amount_row_wise.override.override_doctype_class_having_accounts_controller import (
-	get_override_doctype_class_safe,
-)
-
-override_doctype_class = get_override_doctype_class_safe()
+# from round_tax_amount_row_wise.override.override_doctype_class_having_accounts_controller import (
+# 	get_override_doctype_class_safe,
+# )
+#
+# override_doctype_class = get_override_doctype_class_safe()
 
 # Document Events
 # ---------------
@@ -221,3 +221,9 @@ override_doctype_class = get_override_doctype_class_safe()
 # auth_hooks = [
 # 	"round_tax_amount_row_wise.auth.validate"
 # ]
+
+regional_overrides = {
+	"Saudi Arabia": {
+		"erpnext.controllers.accounts_controller.validate_regional": "round_tax_amount_row_wise.override.override_doctype_class_having_accounts_controller.calculate_taxes_and_totals_round"
+	}
+}
