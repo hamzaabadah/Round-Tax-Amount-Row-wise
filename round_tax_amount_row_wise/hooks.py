@@ -10,7 +10,7 @@ app_license = "MIT"
 
 # include js, css files in header of desk.html
 # app_include_css = "/assets/round_tax_amount_row_wise/css/round_tax_amount_row_wise.css"
-# app_include_js = "/assets/round_tax_amount_row_wise/js/round_tax_amount_row_wise.js"
+app_include_js = "/assets/round_tax_amount_row_wise/js/taxes_and_totals_override.js"
 
 # include js, css files in header of web template
 # web_include_css = "/assets/round_tax_amount_row_wise/css/round_tax_amount_row_wise.css"
