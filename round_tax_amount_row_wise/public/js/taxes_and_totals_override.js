@@ -23,7 +23,12 @@ if (erpnext.taxes_and_totals) {
 				((item.net_amount / this.frm.doc.net_total) * actual) : 0.0;
 
 		} else if(tax.charge_type == "On Net Total") {
-			current_tax_amount = (tax_rate / 100.0) * item.net_amount;
+			if (tax.included_in_print_rate){
+				var net_amount = item.amount / (1 + tax_rate / 100.0)
+				current_tax_amount = item.amount - net_amount
+			}else {
+				current_tax_amount = (tax_rate / 100.0) * item.net_amount;
+			}
 		} else if(tax.charge_type == "On Previous Row Amount") {
 			current_tax_amount = (tax_rate / 100.0) *
 				this.frm.doc["taxes"][cint(tax.row_id) - 1].tax_amount_for_current_item;
