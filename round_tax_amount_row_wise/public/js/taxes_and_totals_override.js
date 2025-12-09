@@ -38,8 +38,7 @@ if (erpnext.taxes_and_totals) {
 		if (!tax.dont_recompute_tax) {
 			this.set_item_wise_tax(item, tax, tax_rate, current_tax_amount);
 		}
-
-		return current_tax_amount;
+		return flt(current_tax_amount, precision("tax_amount", tax))
 	};
 
 
@@ -53,9 +52,12 @@ if (erpnext.taxes_and_totals) {
 			tax_detail = tax.item_wise_tax_detail;
 		}
 
-		let item_wise_tax_amount = current_tax_amount * this.frm.doc.conversion_rate;
+		let _item_wise_tax_amount = current_tax_amount * this.frm.doc.conversion_rate;
+		let item_wise_tax_amount = flt(_item_wise_tax_amount, precision("tax_amount"), tax)
 		if (tax_detail && tax_detail[key])
-			item_wise_tax_amount += tax_detail[key][1];
+			item_wise_tax_amount += flt(
+				tax.item_wise_tax_detail[key][1], precision("tax_amount", tax)
+			)
 
 		tax_detail[key] = [tax_rate, flt(item_wise_tax_amount, precision("base_tax_amount", tax))];
     };
